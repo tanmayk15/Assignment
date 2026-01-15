@@ -1,0 +1,8 @@
+# Sample Images Directory
+
+This directory will contain:
+- Perfect (defect-free) PCB images
+- Defective PCB images with various defect types
+- Single-defect samples for validation
+
+Generated using: `python generate_samples.py`

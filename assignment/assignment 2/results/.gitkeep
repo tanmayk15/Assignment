@@ -1,0 +1,9 @@
+# Results Directory
+
+This directory will contain:
+- Annotated images with detected defects
+- JSON reports for each inspection
+- Summary reports and statistics
+- Visualization charts
+
+Generated automatically when running the inspection system.

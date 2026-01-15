@@ -1,0 +1,102 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# PyTorch
+*.pth
+*.pt
+*.pkl
+
+# ONNX
+*.onnx
+
+# Data
+dataset/
+raw_data/
+data/
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Annotations
+*.xml
+
+# Outputs
+outputs/
+logs/
+checkpoints/
+results/
+eval_results/
+
+# TensorBoard
+tensorboard/
+runs/
+events.out.tfevents.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Documentation builds
+docs/_build/
+site/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+*.log
+*.bak
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Exclude everything in demo except instructions
+demo/*.jpg
+demo/*.jpeg
+demo/*.png
+demo/*.mp4
+demo/*.gif
+!demo/README*.md
+
+# Keep directory structure but ignore contents
+outputs/**
+!outputs/.gitkeep
+dataset/**
+!dataset/.gitkeep

@@ -1,0 +1,98 @@
+# Model Configuration
+model:
+  name: "FasterRCNN"
+  backbone: "resnet18"
+  num_classes: 5  # person, vehicle, bicycle, traffic_sign, animal
+  pretrained: false  # Train from scratch
+  
+  # RPN settings
+  rpn:
+    anchor_scales: [64, 128, 256]
+    anchor_ratios: [0.5, 1.0, 2.0]
+    rpn_batch_size: 256
+    rpn_positive_fraction: 0.5
+    rpn_nms_thresh: 0.7
+    rpn_fg_iou_thresh: 0.7
+    rpn_bg_iou_thresh: 0.3
+    
+  # ROI Head settings
+  roi_head:
+    roi_output_size: 7
+    roi_batch_size: 512
+    roi_positive_fraction: 0.25
+    roi_fg_iou_thresh: 0.5
+    roi_bg_iou_thresh: 0.5
+    
+  # Loss weights
+  loss:
+    rpn_cls_loss_weight: 1.0
+    rpn_reg_loss_weight: 1.0
+    det_cls_loss_weight: 1.0
+    det_reg_loss_weight: 1.0
+    focal_loss_alpha: 0.25
+    focal_loss_gamma: 2.0
+
+# Dataset Configuration
+dataset:
+  name: "VOCDetection"
+  data_dir: "dataset/"
+  classes: ["person", "vehicle", "bicycle", "traffic_sign", "animal"]
+  image_size: [640, 480]
+  
+  # Data augmentation
+  augmentation:
+    horizontal_flip: 0.5
+    brightness: 0.3
+    contrast: 0.3
+    saturation: 0.2
+    random_scale: 0.5
+    random_translate: 0.3
+    random_rotate: 0.2
+    mosaic: 0.15
+    mixup: 0.1
+
+# Training Configuration
+training:
+  num_epochs: 25
+  batch_size: 4
+  accumulation_steps: 4  # Effective batch size = 16
+  num_workers: 4
+  
+  # Optimizer
+  optimizer:
+    type: "SGD"
+    lr: 0.02
+    momentum: 0.9
+    weight_decay: 0.0001
+    
+  # Learning rate schedule
+  lr_schedule:
+    type: "multi_step"
+    warmup_iterations: 500
+    warmup_method: "linear"
+    milestones: [16, 22]
+    gamma: 0.1
+    
+  # Gradient clipping
+  gradient_clip_norm: 35.0
+  
+  # Checkpointing
+  save_frequency: 1  # epochs
+  save_best_only: false
+  
+  # Logging
+  log_frequency: 50  # iterations
+  tensorboard: true
+
+# Evaluation Configuration
+evaluation:
+  iou_thresholds: [0.5, 0.75]
+  confidence_threshold: 0.05
+  nms_threshold: 0.5
+  max_detections: 100
+
+# Inference Configuration
+inference:
+  confidence_threshold: 0.5
+  nms_threshold: 0.5
+  device: "cuda"  # cuda, cpu, or mps
